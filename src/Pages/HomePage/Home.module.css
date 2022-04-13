@@ -1,0 +1,51 @@
+header {
+	display: flex;
+	flex-direction: row;
+	margin: 1vw;
+	padding: 1vw;
+	background-color: aliceblue;
+	border-radius: 5px;
+}
+.register {
+	margin-left: auto;
+	border: none;
+}
+
+/* ******************************************** */
+
+.search {
+	display: flex;
+	flex-direction: row;
+	margin: 1vw;
+	padding: 1vw;
+	display: flex;
+	background-color: aliceblue;
+	border-radius: 5px;
+}
+.searchbar input {
+	border: 1px solid grey;
+	border-radius: 4px;
+	padding: 0.1vw 0.5vw;
+}
+.category {
+	margin-left: auto;
+}
+
+/* ******************************************** */
+
+main {
+	margin: 0 8vw;
+}
+.products {
+	display: flex;
+	flex-wrap: wrap;
+}
+.add_item {
+	border: none;
+	border-radius: 25px;
+	background-color: grey;
+	color: white;
+	font-size: 1.2vw;
+	margin: 1vw;
+	padding: 0.5vw;
+}

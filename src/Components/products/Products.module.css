@@ -1,0 +1,21 @@
+.product {
+	margin: 1vw;
+}
+.product_image {
+	background-color: aliceblue;
+}
+.product_image img {
+	height: 200px;
+}
+a:link {
+	text-decoration: none;
+}
+.product_name {
+	font-size: 1.2vw;
+	color: black;
+}
+.product_price {
+	color: black;
+	text-align: center;
+	font-size: 1.2vw;
+}
