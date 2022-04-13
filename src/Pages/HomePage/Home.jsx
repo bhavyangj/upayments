@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import { deleteProduct, getAllCategories, getAllProducts, getCategoryProducts } from '../../API';
+import { Link } from 'react-router-dom';
+import { getAllCategories, getAllProducts, getCategoryProducts } from '../../API';
 import { Header } from '../../Components/Header/Header';
 import { Product } from '../../Components/products/Products'
-import style from './Home.module.css'
+import './Home.css'
+import { Button, Form } from 'react-bootstrap';
 
 export const Home = () => {
     const [products, setProducts] = useState([]);
-
-    const [categoryId, setCategoryId] = useState();
+    const [filterProducts, setFilterProducts] = useState([]);
+    const [category, setCategory] = useState();
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
@@ -26,58 +27,65 @@ export const Home = () => {
     }, []);
 
     useEffect(() => {
-        const getData = async () => {
-            if (categoryId !== 0) {
-                const x = await getCategoryProducts(categoryId);
-                if (x !== "Not found")
-                    setProducts([x]);
+        // const getData = async () => {
+        //     if (category !== "all") {
+        //         const x = await getCategoryProducts(category);
+        //         if (x !== "Not found")
+        //             setProducts([x]);
+        //     } else {
+        //         const getData = async () => {
+        //             const x = await getAllProducts();
+        //             setProducts(x);
+        //             console.log(x);
+        //         };
+        //         getData();
+        //     }
+        // }
+        // getData();
+        const getProducts = () => {
+            if (category !== "All") {
+                const filter = products.filter(item => item.category === category);
+                console.log("filter: ", filter);
+                setFilterProducts(filter);
             } else {
-                const getData = async () => {
-                    const x = await getAllProducts();
-                    setProducts(x);
-                    console.log(x);
-                };
-                getData();
+                setFilterProducts(products);
             }
         }
-        getData();
-    }, [categoryId]);
+        getProducts();
+        // eslint-disable-next-line
+    }, [category]);
 
     return (
-        <div>
+        <div className="homepage">
             <Header />
-            <div className={style.search}>
-                <div className={style.searchbar}>
-                    <input
-                        type="text"
-                        placeholder='Apple watch , Samsung S20...'
-                    />
+            <div className="search">
+                <div className="searchbar">
+                    <Form.Control type="text" placeholder='Apple watch , Samsung S20...' />
                 </div>
-                <div className={style.category}>
-                    <select value={categoryId} onChange={(e) => { setCategoryId(e.target.value); }}>
-                        <option value={0}>All</option>
+                <div className="category">
+                    <Form.Select value={category} onChange={(e) => { setCategory(e.target.value); }}>
+                        <option value="All">All</option>
                         {categories.map((item) => (
-                            <option key={item.id} value={item.id}>{item.name}</option>
+                            <option key={item.id} value={item.name}>{item.name}</option>
                         ))}
-                    </select>
+                    </Form.Select>
                 </div>
             </div>
+            <Link to="/add-product" className="add_product_btn">
+                <Button variant="secondary">Add Product</Button>
+            </Link>
             <main>
-                <div className={style.products}>
+                <div className="products">
                     {products.map(item => (
-                        <div className={style.item} key={item.id}>
+                        <div className="item" key={item.id}>
                             <Link to={`/product/${item.id}`}>
                                 <Product item={item} />
                             </Link>
                         </div>
                     ))}
                 </div>
-                <Link to="/add-product">
-                    <button className={style.add_item}>
-                        Add Product
-                    </button>
-                </Link>
             </main>
+
         </div>
     )
 }

@@ -1,7 +1,10 @@
+.homepage {
+	height: 100vh;
+	padding: 3vh 3vw;
+}
 header {
 	display: flex;
 	flex-direction: row;
-	margin: 1vw;
 	padding: 1vw;
 	background-color: aliceblue;
 	border-radius: 5px;
@@ -9,6 +12,7 @@ header {
 .register {
 	margin-left: auto;
 	border: none;
+	color: black;
 }
 
 /* ******************************************** */
@@ -16,17 +20,14 @@ header {
 .search {
 	display: flex;
 	flex-direction: row;
-	margin: 1vw;
+	margin: 3vh 0;
 	padding: 1vw;
 	display: flex;
 	background-color: aliceblue;
 	border-radius: 5px;
 }
-.searchbar input {
-	border: 1px solid grey;
-	border-radius: 4px;
-	padding: 0.1vw 0.5vw;
-}
+/* .searchbar input {
+} */
 .category {
 	margin-left: auto;
 }
@@ -48,4 +49,9 @@ main {
 	font-size: 1.2vw;
 	margin: 1vw;
 	padding: 0.5vw;
+}
+
+.add_product_btn {
+	/* position: absolute;
+	right: 1vw; */
 }

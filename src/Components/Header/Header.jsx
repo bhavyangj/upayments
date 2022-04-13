@@ -1,11 +1,12 @@
 import React from 'react'
-import style from '../../Pages/HomePage/Home.module.css'
+import { Link } from 'react-router-dom'
+import '../../Pages/HomePage/Home.css'
 
 export const Header = () => {
     return (
         <header>
             <div>Upayment Store</div>
-            <button className={style.register}>Register</button>
+            <Link className="register" to="/">Register</Link>
         </header>
     )
 }
