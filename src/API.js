@@ -31,9 +31,7 @@ export const addProduct = async (data) => {
 		`https://62286b649fd6174ca82321f1.mockapi.io/case-study/products`,
 		{
 			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
+			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(data),
 		}
 	).then((data) => data.json());

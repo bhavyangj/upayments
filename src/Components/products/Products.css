@@ -1,11 +1,12 @@
 .product {
-	margin: 1vw;
+	margin: 10px;
+	width: 18rem !important;
+	height: 25rem;
+	border-color: rgb(188, 188, 188);
 }
-.product_image {
+.product img {
+	height: 287px;
 	background-color: aliceblue;
-}
-.product_image img {
-	height: 200px;
 }
 a:link {
 	text-decoration: none;

@@ -1,83 +1,89 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import { deleteProduct, getAllCategories, getAllProducts, getCategoryProducts } from '../../API';
-import { Header } from '../../Components/Header/Header';
+import { Link } from 'react-router-dom';
+import { getAllCategories, getAllProducts } from '../../API';
 import { Product } from '../../Components/products/Products'
-import style from './Home.module.css'
+import './Home.css'
+import { Button, Container, Form } from 'react-bootstrap';
+
 
 export const Home = () => {
     const [products, setProducts] = useState([]);
-
-    const [categoryId, setCategoryId] = useState();
+    const [filterProducts, setFilterProducts] = useState([]);
+    const [category, setCategory] = useState("All");
     const [categories, setCategories] = useState([]);
+    const [searchItem, setSearchItem] = useState("");
+    const [foundSearch, setFound] = useState(true);
 
     useEffect(() => {
-        const getData = async () => {
-            const x = await getAllProducts();
-            setProducts(x);
-            console.log(x);
+        const getProducts = async () => {
+            const res = await getAllProducts();
+            setProducts(res);
+            setFilterProducts(res);
         };
-        getData();
-        const data = async () => {
-            const x = await getAllCategories();
-            setCategories(x);
+        getProducts();
+        const getCategories = async () => {
+            const res = await getAllCategories();
+            setCategories(res);
         }
-        data();
+        getCategories();
     }, []);
 
     useEffect(() => {
-        const getData = async () => {
-            if (categoryId !== 0) {
-                const x = await getCategoryProducts(categoryId);
-                if (x !== "Not found")
-                    setProducts([x]);
-            } else {
-                const getData = async () => {
-                    const x = await getAllProducts();
-                    setProducts(x);
-                    console.log(x);
-                };
-                getData();
-            }
+        const getProducts = () => {
+            if (category !== "All") {
+                const filter = products.filter(item => item.category === category);
+                setFilterProducts(filter);
+            } else
+                setFilterProducts(products);
         }
-        getData();
-    }, [categoryId]);
+        getProducts();
+        // eslint-disable-next-line
+    }, [category]);
+
+    useEffect(() => {
+        if (searchItem !== "") {
+            const filterItems = products.filter(item => (item.name.toLowerCase()).includes(searchItem.toLowerCase()));
+            setFilterProducts(filterItems);
+            (!filterItems.length > 0) ? setFound(false) : setFound(true);
+        } else
+            setFilterProducts(products);
+        // eslint-disable-next-line
+    }, [searchItem]);
 
     return (
-        <div>
-            <Header />
-            <div className={style.search}>
-                <div className={style.searchbar}>
-                    <input
-                        type="text"
-                        placeholder='Apple watch , Samsung S20...'
-                    />
-                </div>
-                <div className={style.category}>
-                    <select value={categoryId} onChange={(e) => { setCategoryId(e.target.value); }}>
-                        <option value={0}>All</option>
+        <Container fluid={true} className="homepage">
+            <Form className="filter">
+                <Form.Control
+                    className="search"
+                    type="text"
+                    value={searchItem}
+                    name="developerEmail"
+                    placeholder='Apple watch , Samsung S20...'
+                    autoComplete='off'
+                    onChange={(e) => setSearchItem(e.target.value)}
+                    required />
+                <Form.Group className="category">
+                    <Form.Label>Categories: </Form.Label>
+                    <Form.Select value={category} onChange={(e) => { setCategory(e.target.value); }}>
+                        <option value="All">All</option>
                         {categories.map((item) => (
-                            <option key={item.id} value={item.id}>{item.name}</option>
+                            <option key={item.id} value={item.name}>{item.name}</option>
                         ))}
-                    </select>
-                </div>
-            </div>
-            <main>
-                <div className={style.products}>
-                    {products.map(item => (
-                        <div className={style.item} key={item.id}>
-                            <Link to={`/product/${item.id}`}>
-                                <Product item={item} />
-                            </Link>
-                        </div>
+                    </Form.Select>
+                </Form.Group>
+            </Form>
+            <Link to="/add-product" className="add_product_btn">
+                <Button variant="secondary">Add Product</Button>
+            </Link>
+            {(foundSearch || searchItem === "") &&
+                <Container className="products_item">
+                    {filterProducts.map(item => (
+                        <Product key={item.id} item={item} />
                     ))}
-                </div>
-                <Link to="/add-product">
-                    <button className={style.add_item}>
-                        Add Product
-                    </button>
-                </Link>
-            </main>
-        </div>
+                </Container>}
+            {!foundSearch && <Container className="products_item">
+                Not Found
+            </Container>}
+        </Container>
     )
 }

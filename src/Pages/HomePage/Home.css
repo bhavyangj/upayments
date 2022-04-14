@@ -1,42 +1,47 @@
+.homepage {
+	height: 100vh;
+	padding: 3vh 3vw;
+}
 header {
 	display: flex;
 	flex-direction: row;
-	margin: 1vw;
 	padding: 1vw;
-	background-color: aliceblue;
+	/* background-color: aliceblue; */
 	border-radius: 5px;
 }
 .register {
 	margin-left: auto;
 	border: none;
+	color: black;
 }
 
 /* ******************************************** */
 
-.search {
+.filter {
 	display: flex;
 	flex-direction: row;
-	margin: 1vw;
+	margin: 3vh 0;
 	padding: 1vw;
-	display: flex;
-	background-color: aliceblue;
 	border-radius: 5px;
+	background-color: rgb(218, 213, 213);
 }
-.searchbar input {
-	border: 1px solid grey;
-	border-radius: 4px;
-	padding: 0.1vw 0.5vw;
+.search {
+	max-width: 20vw;
 }
 .category {
 	margin-left: auto;
+	display: flex;
+	flex-direction: row;
+	max-width: 20vw;
+}
+.category > label {
+	margin: auto;
+	margin-right: 1vw;
 }
 
 /* ******************************************** */
 
-main {
-	margin: 0 8vw;
-}
-.products {
+.products_item {
 	display: flex;
 	flex-wrap: wrap;
 }

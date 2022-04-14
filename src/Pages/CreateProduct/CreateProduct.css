@@ -1,0 +1,12 @@
+.form {
+	height: calc(100vh - 60px);
+	display: grid;
+	place-items: center;
+}
+.form_group,
+.buttons {
+	width: 30vw;
+}
+.buttons > button {
+	margin-right: 1vw;
+}

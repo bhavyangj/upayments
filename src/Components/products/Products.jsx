@@ -1,16 +1,19 @@
 import React from 'react'
-
-import style from "./Products.module.css"
+import { Button, Card } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import "./Products.css"
 
 export const Product = (props) => {
 
     return (
-        <div className={style.product}>
-            <div className={style.product_image}>
-                <img src={props.item.avatar} alt="" />
-            </div>
-            <div className={style.product_name}>{props.item.name}</div>
-            <div className={style.product_price}>{`$ ${props.item.price}`}</div>
-        </div>
+        <Card className="product">
+            <Card.Img variant="top" src={props.item.avatar} />
+            <Card.Body>
+                <Link to={`/product/${props.item.id}`}>
+                    <Card.Title style={{ color: 'black', fontSize: '1.3rem' }}>{props.item.name}</Card.Title>
+                    <Button variant="primary">{`$ ${props.item.price}`}</Button>
+                </Link>
+            </Card.Body>
+        </Card>
     )
 }
