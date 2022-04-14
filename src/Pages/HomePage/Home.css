@@ -6,7 +6,7 @@ header {
 	display: flex;
 	flex-direction: row;
 	padding: 1vw;
-	background-color: aliceblue;
+	/* background-color: aliceblue; */
 	border-radius: 5px;
 }
 .register {
@@ -17,27 +17,31 @@ header {
 
 /* ******************************************** */
 
-.search {
+.filter {
 	display: flex;
 	flex-direction: row;
 	margin: 3vh 0;
 	padding: 1vw;
-	display: flex;
-	background-color: aliceblue;
 	border-radius: 5px;
+	background-color: rgb(218, 213, 213);
 }
-/* .searchbar input {
-} */
+.search {
+	max-width: 20vw;
+}
 .category {
 	margin-left: auto;
+	display: flex;
+	flex-direction: row;
+	max-width: 20vw;
+}
+.category > label {
+	margin: auto;
+	margin-right: 1vw;
 }
 
 /* ******************************************** */
 
-main {
-	margin: 0 8vw;
-}
-.products {
+.products_item {
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -49,9 +53,4 @@ main {
 	font-size: 1.2vw;
 	margin: 1vw;
 	padding: 0.5vw;
-}
-
-.add_product_btn {
-	/* position: absolute;
-	right: 1vw; */
 }

@@ -1,0 +1,37 @@
+.product_detail {
+	height: calc(100vh - 70px);
+}
+.product_info > .buttons button {
+	margin: 1vh 1vw;
+}
+.product_head {
+	display: flex;
+	flex-direction: row;
+	margin: 5vh 1vw;
+}
+.product_head img {
+	height: 35vh;
+}
+.product_head div {
+	border: none;
+}
+
+.break_line {
+	color: rgb(78, 78, 78);
+	margin: 1vh 2vw;
+}
+
+.head_side {
+	margin: 0 1vw;
+}
+.head_side .name {
+	font-size: 2vw;
+}
+.head_side .price {
+	font-size: 1.5vw;
+}
+
+.description {
+	margin: 1vh 1vw;
+	font-size: 1vw;
+}
