@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { addProduct, getAllCategories } from '../../API';
 import './CreateProduct.css'
-import { Form, Button, Col, InputGroup, FormControl } from 'react-bootstrap';
+import { Form, Button, Col, InputGroup } from 'react-bootstrap';
 
 export const CraeteProduct = () => {
     const navigate = useNavigate();
@@ -44,73 +44,68 @@ export const CraeteProduct = () => {
         <Form className='form' onSubmit={onSubmitHandler}>
             <h2>Create Product</h2>
             <Form.Group className="form_group">
-                <Form.Label>Product Name</Form.Label>
                 <Form.Control
                     type="text"
                     value={product.name}
                     name="name"
-                    placeholder='Enter Product Name'
+                    placeholder='Product Name'
                     onChange={inputEvent}
-                    max={50}
                     required />
             </Form.Group>
             <Form.Group className="form_group">
-                <Form.Label>Product Description</Form.Label>
                 <Form.Control
-                    type="text"
+                    as="textarea"
                     value={product.description}
                     name="description"
-                    placeholder='Enter Product Description'
+                    placeholder='Product Description'
                     onChange={inputEvent}
-                    min={100}
+                    minLength={50}
+                    style={{ height: '100px' }}
                     required />
                 <Form.Text className="text-muted">
-                    Minimun 100 character is required
+                    Minimun 50 character is required
                 </Form.Text>
             </Form.Group>
             <Form.Group className="form_group">
-                <Form.Label>Product Image</Form.Label>
                 <Form.Control
                     type="text"
                     value={product.avatar}
                     name="avatar"
-                    placeholder='Enter Product Image URL'
+                    placeholder='Product Image URL'
                     onChange={inputEvent}
                     required />
             </Form.Group>
             <Form.Group className="form_group">
-                <Form.Label>Categories: </Form.Label>
                 <Form.Select
                     value={product.category}
                     name="category"
+                    placeholder='Category'
                     onChange={inputEvent}
-                >
+                    required>
                     {categories.map((item) => (
                         <option key={item.id} value={item.name}>{item.name}</option>
                     ))}
                 </Form.Select>
             </Form.Group>
             <Form.Group className="form_group">
-                <Form.Label>Product Price</Form.Label>
                 <InputGroup className="form_group">
                     <InputGroup.Text>$</InputGroup.Text>
                     <Form.Control
                         type="number"
                         value={product.price}
                         name="price"
-                        placeholder='Enter Product price'
+                        placeholder='Product price'
                         onChange={inputEvent}
                         required />
                     <InputGroup.Text>.00</InputGroup.Text>
                 </InputGroup>
             </Form.Group>
             <Form.Group className="form_group">
-                <Form.Label>Developer Email</Form.Label>
                 <Form.Control
                     type="email"
                     value={product.developerEmail}
                     name="developerEmail"
-                    placeholder='Enter Email ID'
+                    placeholder='Developer Email ID'
                     onChange={inputEvent}
                     required />
             </Form.Group>

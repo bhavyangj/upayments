@@ -5,7 +5,6 @@ import { Product } from '../../Components/products/Products'
 import './Home.css'
 import { Button, Container, Form } from 'react-bootstrap';
 
-
 export const Home = () => {
     const [products, setProducts] = useState([]);
     const [filterProducts, setFilterProducts] = useState([]);
@@ -31,8 +30,9 @@ export const Home = () => {
     useEffect(() => {
         const getProducts = () => {
             if (category !== "All") {
-                const filter = products.filter(item => item.category === category);
-                setFilterProducts(filter);
+                const filterItems = products.filter(item => item.category === category);
+                setFilterProducts(filterItems);
+                (!filterItems.length > 0) ? setFound(false) : setFound(true);
             } else
                 setFilterProducts(products);
         }
@@ -81,8 +81,8 @@ export const Home = () => {
                         <Product key={item.id} item={item} />
                     ))}
                 </Container>}
-            {!foundSearch && <Container className="products_item">
-                Not Found
+            {!foundSearch && <Container className="item_not_found">
+                Product Not Found
             </Container>}
         </Container>
     )

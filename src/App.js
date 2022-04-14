@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Header } from "./Components/Header/Header";
-import { CraeteProduct } from "./Pages/CreateProduct/CraeteProduct";
 import { Home } from "./Pages/HomePage/Home";
+import { CraeteProduct } from "./Pages/CreateProduct/CraeteProduct";
 import { ProductDetail } from "./Pages/ProductDetailPage/ProductDetail";
+import { Header } from "./Components/Header/Header";
 
 function App() {
 	return (

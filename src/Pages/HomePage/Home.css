@@ -6,7 +6,6 @@ header {
 	display: flex;
 	flex-direction: row;
 	padding: 1vw;
-	/* background-color: aliceblue; */
 	border-radius: 5px;
 }
 .register {
@@ -53,4 +52,8 @@ header {
 	font-size: 1.2vw;
 	margin: 1vw;
 	padding: 0.5vw;
+}
+.item_not_found {
+	text-align: center;
+	font-size: 3vw;
 }

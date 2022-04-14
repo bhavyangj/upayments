@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getProductDetail } from '../../API'
-import { Header } from '../../Components/Header/Header'
-import './ProductDetail.css'
 import { useNavigate } from 'react-router-dom';
 import { deleteProduct } from '../../API';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap'
+import './ProductDetail.css'
 
 export const ProductDetail = () => {
     const { id } = useParams();
@@ -15,7 +14,6 @@ export const ProductDetail = () => {
     useEffect(() => {
         const getData = async () => {
             const res = await getProductDetail(id);
-            console.log(res);
             setProduct(res);
         };
         getData();
@@ -31,7 +29,7 @@ export const ProductDetail = () => {
             {product &&
                 <div className="product_info">
                     <Col className="buttons">
-                        <Button onClick={() => navigate("/")}>
+                        <Button variant="secondary" onClick={() => navigate("/")}>
                             Back
                         </Button>
                         <Button variant="danger" onClick={() => DeleteHandler(product.id)}>
