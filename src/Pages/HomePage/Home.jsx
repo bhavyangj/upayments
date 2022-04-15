@@ -58,7 +58,7 @@ export const Home = () => {
                     type="text"
                     value={searchItem}
                     name="developerEmail"
-                    placeholder='Apple watch , Samsung S20...'
+                    placeholder='Search for Product'
                     autoComplete='off'
                     onChange={(e) => setSearchItem(e.target.value)}
                     required />
@@ -81,7 +81,7 @@ export const Home = () => {
                         <Product key={item.id} item={item} />
                     ))}
                 </Container>}
-            {!foundSearch && <Container className="item_not_found">
+            {(!foundSearch && category !== "All") && <Container className="item_not_found">
                 Product Not Found
             </Container>}
         </Container>

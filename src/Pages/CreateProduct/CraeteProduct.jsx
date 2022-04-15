@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { addProduct, getAllCategories } from '../../API';
 import './CreateProduct.css'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { storage } from '../../firebase';
 
 export const CraeteProduct = () => {
     const navigate = useNavigate();
@@ -10,7 +12,7 @@ export const CraeteProduct = () => {
         name: "",
         description: "",
         avatar: "",
-        category: "electronics",
+        category: "",
         price: "",
         developerEmail: ""
     });
@@ -37,7 +39,38 @@ export const CraeteProduct = () => {
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         await addProduct(product);
+        console.log("created prduct: ", product);
         navigate("/");
+    }
+
+    const imageChange = (e) => {
+        if (e.target.files && e.target.files.length > 0) {
+            const image = e.target.files[0];
+            uploadFile(image);
+        }
+    };
+
+    const uploadFile = (file) => {
+        if (!file) return;
+        const sotrageRef = ref(storage, `files/${file.name}`);
+        const uploadTask = uploadBytesResumable(sotrageRef, file);
+        uploadTask.on("state_changed",
+            (snapshot) => {
+                const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                console.log(prog);
+            },
+            (error) => console.log(error),
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setProduct((prev) => {
+                        return {
+                            ...prev,
+                            'avatar': downloadURL
+                        }
+                    });
+                });
+            }
+        );
     }
 
     return (
@@ -68,12 +101,10 @@ export const CraeteProduct = () => {
             </Form.Group>
             <Form.Group className="form_group">
                 <Form.Control
-                    type="text"
-                    value={product.avatar}
-                    name="avatar"
-                    placeholder='Product Image URL'
-                    onChange={inputEvent}
-                    required />
+                    type="file"
+                    onChange={imageChange}
+                    accept="image/*"
+                />
             </Form.Group>
             <Form.Group className="form_group">
                 <Form.Select
