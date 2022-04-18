@@ -1,7 +1,7 @@
 {
+	"homepage": "https://bhavyangj.github.io/upayments",
 	"name": "upayments",
 	"version": "0.1.0",
-	"private": true,
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.16.4",
 		"@testing-library/react": "^13.0.1",
@@ -16,7 +16,6 @@
 		"react-scripts": "5.0.1",
 		"web-vitals": "^2.1.4"
 	},
-	"homepage": "https://bhavyangj.github.io/upayments",
 	"scripts": {
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build",
