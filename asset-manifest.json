@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/upayments/static/css/main.46b8336f.css",
+    "main.js": "/upayments/static/js/main.3a5808d2.js",
+    "index.html": "/upayments/index.html",
+    "main.46b8336f.css.map": "/upayments/static/css/main.46b8336f.css.map",
+    "main.3a5808d2.js.map": "/upayments/static/js/main.3a5808d2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.46b8336f.css",
+    "static/js/main.3a5808d2.js"
+  ]
+}
