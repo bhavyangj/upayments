@@ -52,8 +52,8 @@ export const CraeteProduct = () => {
 
     const uploadFile = (file) => {
         if (!file) return;
-        const sotrageRef = ref(storage, `files/${file.name}`);
-        const uploadTask = uploadBytesResumable(sotrageRef, file);
+        const storageRef = ref(storage, `files/${file.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
         uploadTask.on("state_changed",
             (snapshot) => {
                 const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
